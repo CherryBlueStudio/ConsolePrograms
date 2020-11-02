@@ -1,0 +1,51 @@
+using System;
+
+namespace ReverseString
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            NewGame();
+            while (RepeatGame())
+            {
+                Console.WriteLine("");
+                NewGame();
+            } 
+        }
+
+        private static bool RepeatGame()
+        {
+            Console.WriteLine("Would you like to reverse another word y/n?");
+            string answer = Console.ReadLine();
+            if (answer == "y")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static void NewGame()
+        {
+            Console.WriteLine("Enter word to reverse:");
+            string input = Console.ReadLine();
+            string result = StringReverse(input);
+            Console.WriteLine("Your word reversed is: " + result + "\n");
+        }
+
+        private static string StringReverse(string input)
+        {
+            char[] charArray = input.ToCharArray();
+            string result = "";
+
+            for (int counter = 0; counter < charArray.Length; counter++)
+            {
+                result = charArray[counter] + result;
+            }
+            return result;
+        }
+    }
+}
