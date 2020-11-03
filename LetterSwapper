@@ -1,0 +1,77 @@
+// Swap out any letter in a given sentence for another letter
+
+using System;
+
+namespace SwapCharacters
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            NewGame();
+
+            PlayAgain();
+
+            Cheerio();
+        }
+
+        private static void Cheerio()
+        {
+            Console.WriteLine("K bye then!\nPress any key to exit");
+            Console.ReadLine();
+        }
+
+        private static string PlayAgain()
+        {
+            Console.WriteLine("Play again? y/n");
+            string answer = Console.ReadLine();
+            while (answer == "y")
+            {
+                NewGame();
+                answer = PlayAgain();
+            }
+            return answer;
+        }
+
+        private static void NewGame()
+        {
+            string fullSentence = GetSentence();
+            char charToSwap = GetLetterToSwap();
+            char charSwapTo = GetLetterToSwapTo();
+            string newSentence = SwapSentence(fullSentence, charToSwap, charSwapTo);
+            DisplaySentence(newSentence);
+        }
+
+        private static void DisplaySentence(string newSentence)
+        {
+            Console.WriteLine("Your new sentence is: " + newSentence);
+        }
+
+        private static string SwapSentence(string fullSentence, char charToSwap, char charSwapTo)
+        {
+            return fullSentence.Replace(charToSwap, charSwapTo);
+        }
+
+        private static char GetLetterToSwapTo()
+        {
+            Console.WriteLine("Enter what you want to change it to");
+            char charSwapTo = Convert.ToChar(Console.ReadLine());
+            return charSwapTo;
+        }
+
+        private static char GetLetterToSwap()
+        {
+            Console.WriteLine("Enter the letter you want to change");
+            char charToSwap = Convert.ToChar(Console.ReadLine());
+            return charToSwap;
+        }
+
+        private static string GetSentence()
+        {
+            Console.WriteLine("Please enter the sentence");
+            string fullSentence = Console.ReadLine();
+            fullSentence = fullSentence.ToLower();
+            return fullSentence;
+        }
+    }
+}
