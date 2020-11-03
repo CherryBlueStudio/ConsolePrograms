@@ -1,0 +1,62 @@
+// Find some prime numbers with this version of the Sieve of Eratosthenes
+
+using System;
+
+namespace SieveEratosthenes
+{
+    class Program
+    {
+        static bool[] allNumbers;
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Please enter the number: ");
+            var number = Convert.ToInt32(Console.ReadLine());
+            var arraySize = number + 1;
+            CreateArray(arraySize);
+
+            Sieve(arraySize);
+            Console.ReadLine();
+        }
+
+        static void Sieve(int number)
+        {
+            for (int i = 2; i < number; i++)
+            {
+                if (allNumbers[i])
+                {
+                    for (int count = i; i * count < number; count++)
+                    {
+                        allNumbers[i * count] = false;
+                    }
+                }
+            }
+
+            var counter = 0;
+            for (int i = 2; i < number; i++)
+            {
+                if (allNumbers[i] == true)
+                {
+                    Console.Write(i + " ");
+                    counter++;
+                }
+
+                if (counter == 10)
+                {
+                    Console.Write("\n");
+                    counter = 0;
+                }
+            }
+        }
+
+        static void CreateArray(int number)
+        {
+            allNumbers = new bool[number];
+
+            for (int i = 0; i < number; i++)
+            {
+                allNumbers[i] = true;
+            }
+        }
+    }
+}
